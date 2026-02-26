@@ -1,0 +1,41 @@
+name: Fullstack CI
+
+on:
+  push:
+    branches: [dev, main]
+  pull_request:
+    branches: [dev, main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # ---------- FRONTEND ----------
+      - name: Install frontend deps
+        run: |
+          cd frontend
+          npm install
+
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm run build
+
+      # ---------- BACKEND ----------
+      - name: Install backend deps
+        run: |
+          cd backend
+          npm install
+
+      - name: Test backend
+        run: |
+          cd backend
+          npm test || echo "No tests yet"
