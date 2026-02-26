@@ -7,6 +7,7 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import IdeaClarity from './pages/IdeaClarity'
 import ValidationSprint from './pages/ValidationSprint'
+import Revenue from './pages/Revenue'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/revenue" element={<Revenue />} />
           <Route
             path="/dashboard"
             element={
