@@ -24,6 +24,29 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
+// Root route – works when hosted or on any port
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Founder OS API',
+    version: '1.0',
+    docs: {
+      health: '/api/health',
+      auth: '/api/auth',
+      ideas: '/api/ideas',
+      validation: '/api/validation',
+    },
+  });
+});
+
+// Catch-all for unmatched routes – return JSON instead of "Cannot GET /"
+app.use((req, res) => {
+  res.status(404).json({
+    error: 'Not Found',
+    path: req.path,
+    method: req.method,
+  });
+});
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/founderos')
   .then(() => console.log('MongoDB connected'))
