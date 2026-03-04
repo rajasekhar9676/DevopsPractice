@@ -48,7 +48,7 @@ app.use((req, res) => {
 });
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/founderos')
+mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost:27017/founderos')
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
